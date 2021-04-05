@@ -1,0 +1,9 @@
+description: HSC RC2
+instrument: lsst.obs.subaru.HyperSuprimeCam
+inherits:
+  -
+    location: "${OBS_SUBARU_DIR}/pipelines/DRP.yaml"
+    include:
+      - singleFrame
+      - consolidateVisit
+      - skyCorr
