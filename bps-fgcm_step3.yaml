@@ -1,0 +1,48 @@
+##############
+#BPS OPERATOR
+##############
+submitRoot: ${PWD}/submit
+operator: madamow
+clusterAlgorithm: lsst.ctrl.bps.quantum_clustering_funcs.single_quantum_clustering
+
+#createQuantumGraph: pipetask qgraph -d "{dataQuery}" -b {butlerConfig} -i {output} -p {pipelineYaml} -q {qgraphFile} --qgraph-dot {qgraphFile}.dot  -C fgcmFitCycle:fgcmFitCycleHscRC2_cycle00_config.py
+
+#$createQuantumGraph: pipetask qgraph -d "{dataQuery}" -b {butlerConfig} -i {output} -p {pipelineYaml} -q {qgraphFile} --qgraph-dot {qgraphFile}.dot  -C fgcmFitCycle:fgcmFitCycleRC2_cycle01_config.py
+
+#createQuantumGraph: pipetask qgraph -d "{dataQuery}" -b {butlerConfig} -i {output} -p {pipelineYaml} -q {qgraphFile} --qgraph-dot {qgraphFile}.dot  -C fgcmFitCycle:fgcmFitCycleRC2_cycle02_config.py
+
+#createQuantumGraph: pipetask qgraph -d "{dataQuery}" -b {butlerConfig} -i {output} -p {pipelineYaml} -q {qgraphFile} --qgraph-dot {qgraphFile}.dot  -C fgcmFitCycle:fgcmFitCycleRC2_cycle03_config.py
+
+createQuantumGraph: pipetask qgraph -d "{dataQuery}" -b {butlerConfig} -i {output} -p {pipelineYaml} -q {qgraphFile} --qgraph-dot {qgraphFile}.dot  -C fgcmFitCycle:fgcmFitCycleRC2_cycle04_config.py
+
+runQuantumCommand: "${CTRL_MPEXEC_DIR}/bin/pipetask --long-log run -b {butlerConfig} --output {output} --output-run {outCollection} --extend-run --skip-init-writes --qgraph {qgraphFile} --no-versions"
+
+includeConfigs:
+- bps-site-htcondor.yaml
+###################
+
+templateDataId: "{tract}_{patch}_{band}_{visit}_{exposure}_{detector}"
+#First iteration:
+pipelineYaml: /home/madamow/gen2-to-gen3/bps/fgcmFitCycleHscRC2.yaml
+
+campaign: "G3W14"
+submitPath: "{submitRoot}/{outCollection}"
+saveDot: False
+computeSite: ncsapool
+requestMemory: 2048
+requestCpus: 1
+
+payload:
+  runInit: true
+  payloadName: rc2
+  butlerConfig: /repo/main/butler.yaml
+  inCollection: HSC/RC2/defaults
+  output: "HSC/runs/RC2/w_2021_14/DM-29528"
+  outCollection: "{output}/{timestamp}"
+  #dataQuery: "tract = 9615 and instrument='HSC' and skymap='hsc_rings_v1'"
+  dataQuery: "instrument='HSC' and skymap='hsc_rings_v1' and detector!=9 and detector.purpose='SCIENCE'"
+
+pipetask:
+  pipetaskInit:
+    runQuantumCommand: ${CTRL_MPEXEC_DIR}/bin/pipetask --long-log run -b {butlerConfig} --output {output} --output-run {outCollection} --init-only --register-dataset-types --qgraph {qgraphFile} --no-versions --replace-run 
+       

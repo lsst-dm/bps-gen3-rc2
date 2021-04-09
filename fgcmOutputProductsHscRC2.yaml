@@ -1,0 +1,8 @@
+description: Output fgcmcal products
+instrument: lsst.obs.subaru.HyperSuprimeCam
+tasks:
+  fgcmOutputProducts:
+    class: lsst.fgcmcal.fgcmOutputProducts.FgcmOutputProductsTask
+    config:
+      cycleNumber: 4
+      doRefcatOutput: false

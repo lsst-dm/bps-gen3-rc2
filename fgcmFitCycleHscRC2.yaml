@@ -1,0 +1,35 @@
+description: Perform an fgcmcal fit cycle
+instrument: lsst.obs.subaru.HyperSuprimeCam
+tasks:
+  fgcmFitCycle:
+      class: lsst.fgcmcal.fgcmFitCycle.FgcmFitCycleTask
+      config:
+        randomSeed: 89234
+        outfileBase: 'fgcmFitCycleRC2'
+        bands: ['g', 'r', 'i', 'z', 'N921', 'y']
+        fitBands: ['g', 'r', 'i', 'z', 'N921', 'y']
+        maxIterBeforeFinalCycle: 50
+        expGrayPhotometricCutDict:
+          g: -0.05
+          r: -0.05
+          i: -0.05
+          z: -0.05
+          N921: -0.05
+          y: -0.05
+        expGrayHighCutDict:
+          g: 0.10
+          r: 0.10
+          i: 0.10
+          z: 0.10
+          N921: 0.10
+          y: 0.10
+        aperCorrFitNBins: 0
+        minStarPerExp: 100
+        expVarGrayPhotometricCutDict:
+          g: 0.0025
+          r: 0.0025
+          i: 0.0025
+          z: 0.0025
+          N921: 0.005
+          y: 0.0025
+        minExpPerNight: 3
