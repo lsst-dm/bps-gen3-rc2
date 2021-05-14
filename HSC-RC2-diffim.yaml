@@ -1,0 +1,7 @@
+description: HSC RC2
+instrument: lsst.obs.subaru.HyperSuprimeCam
+inherits:
+  -
+    location: "/scratch/madamow/gen3_bps/DRP.yaml"
+    include:
+      - diffimDRP
