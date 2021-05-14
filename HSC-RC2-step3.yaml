@@ -4,4 +4,4 @@ inherits:
   -
     location: "${OBS_SUBARU_DIR}/pipelines/DRP.yaml"
     include:
-      - step1
+      - step3

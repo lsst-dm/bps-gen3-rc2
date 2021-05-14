@@ -1,0 +1,5 @@
+description: HSC RC2
+instrument: lsst.obs.subaru.HyperSuprimeCam
+inherits:
+  -
+    location: "${FARO_DIR}/pipelines/metrics_pipeline_matched_jointcal_fgcm.yaml"
