@@ -31,7 +31,7 @@ payload:
   inCollection: HSC/RC2/defaults
   output: "HSC/runs/RC2/w_2021_18/DM-29973"
   outCollection: "{output}/{timestamp}"
-  dataQuery: "instrument='HSC' AND skymap='hsc_rings_v1' AND tract IN (9615, 9696,9813)"
+  dataQuery: "instrument='HSC' AND skymap='hsc_rings_v1' AND tract IN (9615, 9697,9813)"
 #  dataQuery: "instrument='HSC' and skymap='hsc_rings_v1' and detector!=9 and detector.purpose='SCIENCE'"
 
 createQuantumGraph: pipetask qgraph -d "{dataQuery}" -b {butlerConfig} -i {inCollection}  --output {output} --output-run {outCollection}  -p {pipelineYaml} -q {qgraphFile} --qgraph-dot {qgraphFile}.dot
