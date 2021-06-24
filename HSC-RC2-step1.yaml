@@ -1,6 +1,6 @@
 description: HSC RC2
 instrument: lsst.obs.subaru.HyperSuprimeCam
-inherits:
+imports:
   -
     location: "${OBS_SUBARU_DIR}/pipelines/DRP.yaml"
     include:
